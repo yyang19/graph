@@ -1,10 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-
-typedef struct edge{
-    int vertex;
-    struct edge *next;
-}edge_t;
+#include "graph.h"
 
 static edge_t *
 add_edge( edge_t *list, int v ){
@@ -34,38 +30,47 @@ destroy_list( edge_t *list ){
 
 int main(){
 
-    int n_vertices, n_edges;
+    graph_t G;
+
+    int n_edges;
     int vi, ei;
     int v_start, v_end;
     edge_t *e;
 
     printf("Enter the number of vertices \n");
-    scanf( "%d", &n_vertices );
+    scanf( "%d", &G.n_vertices );
     
     printf("Enter the number of edges \n");
     scanf( "%d", &n_edges );
 
+    G.vertices = (vertex_t *)malloc( sizeof(vertex_t) * (G.n_vertices+1) );
+    
     //create adjacencyList
-    edge_t **adjacencyList = (edge_t **)malloc( sizeof(edge_t *) * (n_vertices+1) );
+    G.adjacencyList = (edge_t **)malloc( sizeof(edge_t *) * (G.n_vertices+1) );
 
-    //initialize adjacencyList
-    for(vi=0; vi<=n_vertices; vi++)
-        adjacencyList[vi]=NULL;
+    for(vi=0; vi<=G.n_vertices; vi++){
+        //populate vertices
+        G.vertices[vi].color = WHITE;
+        G.vertices[vi].distance = -1;
+        G.vertices[vi].parent = NULL;
+        //initialize adjacencyList
+        G.adjacencyList[vi]=NULL;
+    }
 
     for(ei=1; ei<=n_edges; ei++){
         printf("Enter start and end point for %d-th edge: start=", ei);
         scanf( "%d", &v_start );
         printf( "end=" );
         scanf( "%d", &v_end );
-        adjacencyList[v_start] = add_edge( adjacencyList[v_start], v_end );
+        G.adjacencyList[v_start] = add_edge( G.adjacencyList[v_start], v_end );
         //remove the following line if you want a directed graph
-        adjacencyList[v_end] = add_edge( adjacencyList[v_end], v_start );
+        G.adjacencyList[v_end] = add_edge( G.adjacencyList[v_end], v_start );
     }
 
     //Print adjacencyList
-    for(vi=0; vi<=n_vertices; vi++){
+    for(vi=0; vi<=G.n_vertices; vi++){
         printf("Adjacency List of vertex %d: ", vi);
-        e = adjacencyList[vi];
+        e = G.adjacencyList[vi];
         while(e){
             printf("%d->", e->vertex);
             e=e->next;
@@ -73,12 +78,13 @@ int main(){
         printf("NULL\n");
     }
 
-    for(vi=0; vi<=n_vertices; vi++){
-        destroy_list(adjacencyList[vi]);
+    for(vi=0; vi<=G.n_vertices; vi++){
+        destroy_list(G.adjacencyList[vi]);
         printf("Adjacency List of vertex %d destroyed\n", vi);
     }
 
-    free( adjacencyList );
+    free( G.adjacencyList );
+    free( G.vertices );
 
     return 0;
 }

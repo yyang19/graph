@@ -22,7 +22,7 @@ BASE_LIB_PATH=$(BASE_PATH)/lib
 BASE_HEADER_PATH=$(BASE_PATH)/include
 TARGET_LIB_PATH=$(BASE_PATH)/lib
 
-SRCS = graph.c # source files
+SRCS = bfs.c # source files
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS += -I${BASE_HEADER_PATH}
