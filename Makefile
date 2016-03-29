@@ -19,10 +19,11 @@ TARGET_LIB = lib${LIB_NAME}.so # target lib
 
 BASE_PATH=..
 BASE_LIB_PATH=$(BASE_PATH)/lib
-BASE_HEADER_PATH=$(BASE_PATH)/include
+BASE_HEADER_PATH=./
+#BASE_HEADER_PATH+=$(BASE_PATH)/include
 TARGET_LIB_PATH=$(BASE_PATH)/lib
 
-SRCS = bfs.c # source files
+SRCS = fifo.c bfs.c # source files
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS += -I${BASE_HEADER_PATH}

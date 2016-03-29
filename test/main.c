@@ -50,9 +50,7 @@ int main(){
 
     for(vi=0; vi<=G.n_vertices; vi++){
         //populate vertices
-        G.vertices[vi].color = WHITE;
-        G.vertices[vi].distance = -1;
-        G.vertices[vi].parent = NULL;
+        G.vertices[vi].id       = vi;
         //initialize adjacencyList
         G.adjacencyList[vi]=NULL;
     }

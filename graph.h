@@ -8,6 +8,7 @@ enum{
 };
 
 typedef struct vertex{
+    int id;
     int color;
     int distance;
     struct vertex *parent;
