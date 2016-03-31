@@ -17,10 +17,9 @@ RM = rm -f  # rm command
 #TARGET_LIB = libgraph.so # target lib
 TARGET_LIB = lib${LIB_NAME}.so # target lib
 
-BASE_PATH=..
+BASE_PATH=.
 BASE_LIB_PATH=$(BASE_PATH)/lib
 BASE_HEADER_PATH=./
-#BASE_HEADER_PATH+=$(BASE_PATH)/include
 TARGET_LIB_PATH=$(BASE_PATH)/lib
 
 SRCS = fifo.c bfs.c # source files
@@ -46,4 +45,3 @@ clean:
 
 install:
 	cp ${TARGET_LIB} ${TARGET_LIB_PATH}
-	cp ${LIB_NAME}.h ${BASE_HEADER_PATH}

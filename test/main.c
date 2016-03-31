@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
+#include "bfs.h"
 #include "graph.h"
 
 static edge_t *
@@ -75,6 +76,12 @@ int main(){
         };
         printf("NULL\n");
     }
+
+
+    BFS( &G, 1, 1);
+    BFS( &G, 2, 1);
+    BFS( &G, 3, 1);
+    BFS( &G, 4, 1);
 
     for(vi=0; vi<=G.n_vertices; vi++){
         destroy_list(G.adjacencyList[vi]);

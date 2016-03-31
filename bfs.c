@@ -18,7 +18,7 @@ BFS( graph_t *g, int start, int print )
         return;
 
     edge_t *e;
-    vertex_t v, neighbour;
+    vertex_t *v, *neighbour;
     fifo_t *queue = fifo_new();
     int vi;
 
@@ -40,23 +40,23 @@ BFS( graph_t *g, int start, int print )
     while( !fifo_empty(queue) ){
 
         int vi = *(int *)fifo_out(queue);
-        v = g->vertices[ vi ];
+        v = &g->vertices[ vi ];
         
-        e = g->adjacencyList[v.id];
+        e = g->adjacencyList[v->id];
         while( e ){
-            neighbour = g->vertices[e->vertex];
-            if( neighbour.color == WHITE ){
-                neighbour.color = GREY;
-                neighbour.parent = &v;
-                neighbour.distance = v.distance+1;
-                fifo_in( queue, (void *)&neighbour.id );
+            neighbour = &g->vertices[e->vertex];
+            if( neighbour->color == WHITE ){
+                neighbour->color = GREY;
+                neighbour->parent = v;
+                neighbour->distance = v->distance+1;
+                fifo_in( queue, (void *)&neighbour->id );
             }
             e = e->next;
         }
         
-        v.color = BLACK;
+        v->color = BLACK;
         if( print )
-            _dump(&v);
+            _dump(v);
     };   
 
     fifo_free(queue);
