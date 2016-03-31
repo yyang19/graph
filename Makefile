@@ -22,7 +22,7 @@ BASE_LIB_PATH=$(BASE_PATH)/lib
 BASE_HEADER_PATH=./
 TARGET_LIB_PATH=$(BASE_PATH)/lib
 
-SRCS = fifo.c bfs.c # source files
+SRCS = fifo.c bfs.c dfs.c# source files
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS += -I${BASE_HEADER_PATH}

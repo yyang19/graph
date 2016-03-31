@@ -22,6 +22,8 @@ BFS( graph_t *g, int start, int print )
     fifo_t *queue = fifo_new();
     int vi;
 
+    printf( "\t\t---BFS starting from vertex %d---\n", start );
+
     for(vi=0; vi<=g->n_vertices; vi++){
         // initialize vertex state
         g->vertices[vi].color    = WHITE;

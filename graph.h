@@ -11,6 +11,7 @@ typedef struct vertex{
     int id;
     int color;
     int distance;
+    int seq;
     struct vertex *parent;
 }vertex_t;
 

@@ -26,4 +26,4 @@ clean:
 	$(RM) $(OBJS)
 
 dist-clean: clean
-	$(RM) ${BINARY} out obj/*
+	$(RM) ${BINARY} out obj gmon.out
